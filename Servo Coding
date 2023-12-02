@@ -1,1 +1,73 @@
-Coding for servos here
+#include <Servo.h>
+Servo A, B, C, D;
+
+// wires A
+const int buttonAPin = 2;
+int buttonAState = 0;
+int lastbuttonAState = 0;
+// wires B
+const int buttonBPin = 1;
+int buttonBState = 0;
+int lastbuttonBState = 0;
+// wires C
+const int buttonCPin = 6;
+int buttonCState = 0;
+int lastbuttonCState = 0;
+// wires D
+const int buttonDPin = 3;
+int buttonDState = 0;
+int lastbuttonDState = 0;
+
+void setup() {
+  pinMode(buttonAPin, INPUT);
+  pinMode(buttonBPin, INPUT);
+  B.attach(9);
+  A.attach(10);
+  C.attach(13);
+  D.attach(12);
+}
+void loop() {
+  buttonAState = digitalRead(buttonAPin);
+  buttonBState = digitalRead(buttonBPin);
+  buttonCState = digitalRead(buttonCPin);
+  buttonDState = digitalRead(buttonDPin);
+
+  // A
+  if (buttonAState != lastbuttonAState) {
+    if (buttonAState == HIGH) {
+      A.write(-180);
+    } else if (buttonAState == LOW) {
+      A.write(180);
+    }
+  }
+  // B
+  if (buttonBState != lastbuttonBState) {
+    if (buttonBState == HIGH) {
+      B.write(135);
+    } else if (buttonBState == LOW) {
+      B.write(90);
+    }
+  }
+  // C
+  if (buttonCState != lastbuttonCState) {
+    if (buttonCState == HIGH) {
+      C.write(-30);
+    } else if (buttonCState == LOW) {
+      C.write(30);
+    }
+  }
+  // D
+  if (buttonDState != lastbuttonDState) {
+    if (buttonDState == HIGH) {
+      D.write(-180);
+    } else if (buttonCState == LOW) {
+      D.write(180);
+    }
+  }
+
+  lastbuttonAState = buttonAState;
+  lastbuttonBState = buttonBState;
+  lastbuttonCState = buttonCState;
+  lastbuttonDState = buttonDState;
+}
+
